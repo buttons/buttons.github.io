@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "core-js": "^3.25.0",
-    "github-buttons": "https://github.com/ntkme/github-buttons/archive/v2.22.0.tar.gz",
+    "github-buttons": "https://github.com/buttons/github-buttons/archive/v2.22.0.tar.gz",
     "vue": "^3.2.38",
     "vue-github-button": "^3.0.3"
   },
