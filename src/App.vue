@@ -244,7 +244,7 @@ export default {
       const options = { ...this.options }
 
       if (!this.isValidUser || (!this.isValidRepo && options.type !== 'follow' && options.type !== 'sponsor')) {
-        options.user = 'ntkme'
+        options.user = 'buttons'
         options.repo = 'github-buttons'
       }
 
