@@ -1,3 +1,9 @@
+<script setup>
+defineProps({
+  code: String
+})
+</script>
+
 <template>
   <textarea class="form-control" :rows="code.split('\n').length" readonly
     :value="code"
@@ -6,16 +12,9 @@
     @mouseup.prevent></textarea>
 </template>
 
-<script>
-export default {
-  name: 'code-snippet',
-  props: ['code']
-}
-</script>
-
 <style scoped>
 textarea, textarea[readonly] {
-  font-family: monospace, sans-serif;
+  font-family: monospace, monospace;
   font-size: 11px;
   cursor: pointer;
   background-color: #fff !important;

@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
+import './style.css'
 import App from './App.vue'
 
-window.onbeforeunload = function () {}
+onbeforeunload = function () {}
 
 createApp(App).mount('#app')

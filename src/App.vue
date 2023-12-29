@@ -119,9 +119,8 @@
 </template>
 
 <script>
-import './assets/main.css'
 import GithubButton from 'vue-github-button'
-import CodeSnippet from '@/components/CodeSnippet'
+import CodeSnippet from './components/CodeSnippet.vue'
 
 export default {
   name: 'app',
@@ -372,7 +371,7 @@ export default {
     scriptHTML () {
       switch (this.options.syntax) {
         case 'vue':
-          return 'import GithubButton from \'vue-github-button\'\n\nexport default {\n  components: {\n    GithubButton\n  },\n  // ...\n}'
+          return 'import GithubButton from \'vue-github-button\''
         case 'react':
           return 'import GitHubButton from \'react-github-btn\''
         default:
