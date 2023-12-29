@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <form autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false">
-      <fieldset class="form-group">
+      <fieldset class="">
         <h4>Choose a button</h4>
         <div class="row">
           <div class="col-9 col-sm-6 col-md-4 col-lg-2" v-for="type in types" :key="type.value">
-            <div class="form-check">
-              <label class="form-check-label">
+            <div class="form-check d-relative">
+              <label class="form-check-label d-block">
                 <input type="radio" class="form-check-input" name="type" :value="type.value" v-model="options.type">{{ capitalize(type.value) }}<br>
-                <github-button href="#" data-size="large" :data-icon="type.icon" :data-text="capitalize(type.value)" aria-hidden="true"></github-button>
+                <github-button href="#" data-color-scheme="" :data-icon="type.icon" data-size="large" :data-text="capitalize(type.value)" aria-hidden="true"></github-button>
               </label>
             </div>
           </div>
@@ -18,86 +18,84 @@
       <div class="row" v-if="options.type">
         <div class="col-12 col-sm-6 col-md-5">
           <h4>Button options</h4>
-          <div class="form-group">
+          <div class="row mb-3">
             <div class="input-group">
               <input ref="user" class="form-control" type="text" maxlength="39" placeholder=":user" autofocus="autofocus" :class="{ 'is-invalid': options.user !== '' && !isValidUser }" v-model="options.user">
-              <div class="input-group-append input-group-prepend">
-                <span class="input-group-text">/</span>
-              </div>
+              <span class="input-group-text">/</span>
               <input ref="repo" class="form-control" type="text" maxlength="100" placeholder=":repo" :disabled="options.type === 'follow' || options.type === 'sponsor'" :class="{ 'is-invalid': options.repo !== '' && !isValidRepo }" v-model="options.repo">
             </div>
           </div>
-          <div class="form-group">
-            <div class="form-row align-items-center my-1">
-              <div class="col-auto mr-auto">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" v-model="options.colorScheme"> Color scheme
-                  </label>
-                </div>
-              </div>
-              <div class="col-auto">
-                <label class="sr-only" for="prefers-color-scheme-no-preference">@media (prefers-color-scheme: no-preference)</label>
-                <select id="prefers-color-scheme-no-preference" class="form-control form-control-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme['no-preference']">
-                  <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
-                </select>
+          <div class="row mb-1">
+            <div class="col-auto me-auto">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" v-model="options.colorScheme"> Color scheme
+                </label>
               </div>
             </div>
-            <div class="form-row align-items-center my-1 ml-3">
-              <div class="col-auto mr-auto">
-                <label for="prefers-color-scheme-light" class="form-check-label col-form-label-sm">@media (prefers-color-scheme: light)</label>
-              </div>
-              <div class="col-auto">
-                <select id="prefers-color-scheme-light" class="form-control form-control-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme.light">
-                  <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
-                </select>
-              </div>
+            <div class="col-auto">
+              <label class="visually-hidden" for="prefers-color-scheme-no-preference">@media (prefers-color-scheme: no-preference)</label>
+              <select id="prefers-color-scheme-no-preference" class="form-select form-select-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme['no-preference']">
+                <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
+              </select>
             </div>
-            <div class="form-row align-items-center my-1 ml-3">
-              <div class="col-auto mr-auto">
-                <label for="prefers-color-scheme-dark" class="form-check-label col-form-label-sm">@media (prefers-color-scheme: dark)</label>
-              </div>
-              <div class="col-auto">
-                <select id="prefers-color-scheme-dark" class="form-control form-control-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme.dark">
-                  <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
-                </select>
-              </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col-auto me-auto">
+              <label for="prefers-color-scheme-light" class="form-check-label col-form-label-sm ps-4">@media (prefers-color-scheme: light)</label>
             </div>
-            <div class="form-row my-2">
-              <div class="col-auto">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" v-model="options.largeButton"> Large button
-                  </label>
-                </div>
-              </div>
+            <div class="col-auto">
+              <select id="prefers-color-scheme-light" class="form-select form-select-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme.light">
+                <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
+              </select>
             </div>
-            <div class="form-row my-2">
-              <div class="col-auto">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" :disabled="options.type === 'sponsor' || options.type === 'discuss' || options.type === 'download' || options.type === 'install this package' || options.type === 'use this GitHub Action' || options.type === 'use this template'" v-model="options.showCount"> Show count
-                  </label>
-                </div>
-              </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-auto me-auto">
+              <label for="prefers-color-scheme-dark" class="form-check-label col-form-label-sm ps-4">@media (prefers-color-scheme: dark)</label>
             </div>
-            <div class="form-row my-2">
-              <div class="col-auto">
-                <div class="form-check">
-                  <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" v-model="options.standardIcon"> Standard icon
-                  </label>
-                </div>
+            <div class="col-auto">
+              <select id="prefers-color-scheme-dark" class="form-select form-select-sm" :disabled="options.colorScheme !== true" v-model="options.prefersColorScheme.dark">
+                <option v-for="colorScheme in colorSchemes" :key="colorScheme">{{ colorScheme }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" v-model="options.largeButton"> Large button
+                </label>
               </div>
             </div>
           </div>
-          <div class="form-group">
-            <label for="syntax">Syntax</label>
-            <select id="syntax" class="form-control" v-model="options.syntax">
-              <option>html</option>
-              <option value="vue">vue-github-button</option>
-              <option value="react">react-github-btn</option>
-            </select>
+          <div class="row mb-1">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" :disabled="options.type === 'sponsor' || options.type === 'discuss' || options.type === 'download' || options.type === 'install this package' || options.type === 'use this GitHub Action' || options.type === 'use this template'" v-model="options.showCount"> Show count
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-1">
+            <div class="col">
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input class="form-check-input" type="checkbox" v-model="options.standardIcon"> Standard icon
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label for="syntax">Syntax</label>
+              <select id="syntax" class="form-select" v-model="options.syntax">
+                <option>html</option>
+                <option value="vue">vue-github-button</option>
+                <option value="react">react-github-btn</option>
+              </select>
+            </div>
           </div>
         </div>
         <div class="col-12 col-sm-6 col-md-7">
@@ -106,10 +104,10 @@
           <p :style="{ height: options.largeButton ? '28px' : '20px' }">
             <github-button v-bind="getPreviewAttrs()"></github-button>
           </p>
-          <div class="form-group">
+          <div class="mb-1">
             <code-snippet :code="templateHTML"></code-snippet>
           </div>
-          <div class="form-group">
+          <div>
             <code-snippet :code="scriptHTML"></code-snippet>
           </div>
         </div>
@@ -187,13 +185,13 @@ export default {
         user: '',
         repo: '',
         type: null,
-        colorScheme: false,
+        colorScheme: true,
         prefersColorScheme: {
           'no-preference': 'light',
           light: 'light',
           dark: 'dark'
         },
-        largeButton: false,
+        largeButton: true,
         showCount: false,
         standardIcon: false,
         syntax: ((referrer) => {
@@ -398,7 +396,7 @@ p {
   overflow-y: hidden;
 }
 
-.form-check-label::before {
+.form-check-label.d-block::before {
   position: absolute;
   z-index: 1;
   display: block;

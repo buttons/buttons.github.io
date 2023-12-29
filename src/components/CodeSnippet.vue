@@ -17,7 +17,6 @@ textarea, textarea[readonly] {
   font-family: monospace, monospace;
   font-size: 11px;
   cursor: pointer;
-  background-color: #fff !important;
   resize: none;
 }
 </style>
