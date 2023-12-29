@@ -4,7 +4,7 @@
       <fieldset>
         <h4>Choose a button</h4>
         <div class="row">
-          <div class="col-9 col-sm-6 col-md-4 col-lg-2" v-for="type in types" :key="type.value">
+          <div class="col-9 col-sm-6 col-md-4 col-lg-3 col-xxl-2" v-for="type in types" :key="type.value">
             <div class="form-check">
               <label class="form-check-label position-relative d-block">
                 <input type="radio" class="form-check-input" name="type" :value="type.value" v-model="options.type">{{ capitalize(type.value) }}<br>
@@ -16,7 +16,7 @@
       </fieldset>
       <hr>
       <div class="row" v-if="options.type">
-        <div class="col-12 col-sm-6 col-md-5">
+        <div class="col-12 col-lg-7 col-xl-6 col-xxl-5">
           <h4>Button options</h4>
           <div class="row mb-3">
             <div class="input-group">
@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-auto me-auto">
+            <div class="col-12 col-sm-auto me-auto">
               <div class="form-check">
                 <label class="form-check-label">
                   <input class="form-check-input" type="checkbox" v-model="options.colorScheme"> Color scheme
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="row mb-1">
-            <div class="col-auto me-auto">
+            <div class="col-12 col-sm-auto me-auto">
               <label for="prefers-color-scheme-light" class="form-check-label col-form-label-sm ps-4">@media (prefers-color-scheme: light)</label>
             </div>
             <div class="col-auto">
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="row mb-3">
-            <div class="col-auto me-auto">
+            <div class="col-12 col-sm-auto me-auto">
               <label for="prefers-color-scheme-dark" class="form-check-label col-form-label-sm ps-4">@media (prefers-color-scheme: dark)</label>
             </div>
             <div class="col-auto">
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div>
-          <div class="row mb-1">
+          <div class="row mb-3">
             <div class="col">
               <label for="syntax">Syntax</label>
               <select id="syntax" class="form-select" v-model="options.syntax">
@@ -98,16 +98,16 @@
             </div>
           </div>
         </div>
-        <div class="col-12 col-sm-6 col-md-7">
+        <div class="col-12 col-lg-5 col-xl-6 col-xxl-7">
           <h4>Preview and code</h4>
           <p>Try out your button, then copy and paste the code below into the HTML for your site.</p>
           <p :style="{ height: options.largeButton ? '28px' : '20px' }">
             <github-button v-bind="getPreviewAttrs()"></github-button>
           </p>
-          <div class="mb-1">
+          <div class="mb-2">
             <code-snippet :code="templateHTML"></code-snippet>
           </div>
-          <div class="mb-1">
+          <div class="mb-3">
             <code-snippet :code="scriptHTML"></code-snippet>
           </div>
         </div>
