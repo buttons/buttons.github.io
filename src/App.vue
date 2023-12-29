@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <form autocapitalize="none" autocomplete="off" autocorrect="off" spellcheck="false">
-      <fieldset class="">
+      <fieldset>
         <h4>Choose a button</h4>
         <div class="row">
           <div class="col-9 col-sm-6 col-md-4 col-lg-2" v-for="type in types" :key="type.value">
@@ -87,7 +87,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row mb-1">
             <div class="col">
               <label for="syntax">Syntax</label>
               <select id="syntax" class="form-select" v-model="options.syntax">
@@ -107,7 +107,7 @@
           <div class="mb-1">
             <code-snippet :code="templateHTML"></code-snippet>
           </div>
-          <div>
+          <div class="mb-1">
             <code-snippet :code="scriptHTML"></code-snippet>
           </div>
         </div>
