@@ -5,8 +5,8 @@
         <h4>Choose a button</h4>
         <div class="row">
           <div class="col-9 col-sm-6 col-md-4 col-lg-2" v-for="type in types" :key="type.value">
-            <div class="form-check d-relative">
-              <label class="form-check-label d-block">
+            <div class="form-check">
+              <label class="form-check-label position-relative d-block">
                 <input type="radio" class="form-check-input" name="type" :value="type.value" v-model="options.type">{{ capitalize(type.value) }}<br>
                 <github-button href="#" data-color-scheme="" :data-icon="type.icon" data-size="large" :data-text="capitalize(type.value)" aria-hidden="true"></github-button>
               </label>
