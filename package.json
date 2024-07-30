@@ -12,7 +12,7 @@
     "bootstrap": "^5.3.3",
     "github-buttons": "https://github.com/buttons/github-buttons/archive/v2.28.0.tar.gz",
     "vue": "^3.4.34",
-    "vue-github-button": "^3.1.0"
+    "vue-github-button": "^3.1.2"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.1",
