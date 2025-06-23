@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "bootstrap": "^5.3.6",
+    "bootstrap": "^5.3.7",
     "github-buttons": "https://github.com/buttons/github-buttons/archive/v2.29.1.tar.gz",
     "vue": "^3.5.16",
     "vue-github-button": "^3.1.3"
