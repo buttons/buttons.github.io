@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
-    "github-buttons": "https://github.com/buttons/github-buttons/archive/v2.29.1.tar.gz",
+    "github-buttons": "https://github.com/buttons/github-buttons/archive/v2.30.0.tar.gz",
     "vue": "^3.5.26",
     "vue-github-button": "^3.1.3"
   },
