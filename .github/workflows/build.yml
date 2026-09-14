@@ -33,7 +33,7 @@ jobs:
 
     if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
 
-    needs: build
+    needs: [build]
 
     permissions:
       pages: write
@@ -49,3 +49,26 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
+
+  dependabot:
+
+    if: github.event.repository.fork == false && github.event.pull_request.user.login == 'dependabot[bot]'
+
+    needs: [build]
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Fetch Dependabot metadata
+        id: dependabot-metadata
+        uses: dependabot/fetch-metadata@v3
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: steps.dependabot-metadata.outputs.update-type == 'version-update:semver-minor' || steps.dependabot-metadata.outputs.update-type == 'version-update:semver-patch'
+        run: gh pr merge --auto --squash ${{ github.event.pull_request.html_url }}
+        env:
+          GH_TOKEN: ${{ github.token }}
