@@ -58,6 +58,10 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    concurrency:
+      group: dependabot-merge
+      queue: max
+
     permissions:
       contents: write
       pull-requests: write
